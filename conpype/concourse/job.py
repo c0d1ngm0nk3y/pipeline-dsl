@@ -11,7 +11,6 @@ class Job:
         self.name = name
         self.groups = groups
         self.old_name = old_name
-        self.x = x
         self.plan = [InitTask(init_dirs, image_resource)]
         self.image_resource = image_resource
         self.resource_chains = resource_chains
@@ -53,17 +52,7 @@ class Job:
         return resource_chain.resource.get(name)
 
     def task(self, image_resource=None, **kwargs):
-        if not image_resource:
-            image_resource = self.image_resource
-
-        def decorate(fun):
-            task = Task(fun=fun, jobname=self.name, secret_manager=self.secret_manager, image_resource=image_resource, script=self.script, inputs=self.inputs, **kwargs)
-
-            self.plan.append(task)
-            self.tasks[task.name] = task
-            return task.fn_cached
-
-        return decorate
+        return None
 
     def in_parallel(self, fail_fast=False):
         parallel_task = ParallelStep(self, fail_fast, self.secret_manager)
