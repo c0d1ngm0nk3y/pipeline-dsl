@@ -11,6 +11,7 @@ class Job:
         self.name = name
         self.groups = groups
         self.old_name = old_name
+        self.x = x
         self.plan = [InitTask(init_dirs, image_resource)]
         self.image_resource = image_resource
         self.resource_chains = resource_chains
