@@ -63,7 +63,8 @@ class Job:
             return task.fn_cached
 
         return decorate
-    
+
+    # Test
     def in_parallel(self, fail_fast=False):
         parallel_task = ParallelStep(self, fail_fast, self.secret_manager)
         self.plan.append(parallel_task)
